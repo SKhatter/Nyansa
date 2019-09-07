@@ -1,0 +1,26 @@
+/*
+* The below code has bug fixed and replaces the if condition with a while loop
+* in the Consumers code.
+* Whenever a producer adds an item, say two consumer threads will try to acquire the lock,
+* but there is just 1 item, which is removed by first thread. So when second thread tries to acquire the 
+* lock, there is no item in the queue. Replacing an if with a while loop will do. 
+*/
+Producer
+while (true) {
+       item = generate_item()
+       mutex.lock()
+       fifo_queue.push(item)
+       mutex.unlock()
+       condition.signal()
+}
+
+Consumers
+while(true) {
+       mutex.lock()
+       while (fifo_queue.empty()) {
+             condition.wait(mutex)
+       }
+       item = fifo_queue.remove()
+       mutex.unlock()
+       process_item(item)
+}
