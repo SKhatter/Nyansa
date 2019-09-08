@@ -181,11 +181,12 @@ public class SortURLs {
 	
 	/*
 	 * This method prints the report to the console
-	 * Time Complexity: O(NlogN)
+	 * Time Complexity: O(NlogN.logN)
 	 * Explanation: The worst case could be 
 	 * all the lines in file have different url, and 
 	 * have same date. Each insertion and pop from 
-	 * priority queue takes O(log N).
+	 * priority queue takes O(log N).Each get from 
+	 * a treemap takes O(log N)
 	 * */
 	void printToConsole() {
 		
@@ -224,7 +225,7 @@ public class SortURLs {
 
 
 /* The overall Big O time complexity of the program is 
-* O(N log N)
+* O(N (log N)^2)
 * Space Complexity: O(N)
 * Author: Sumedha Khatter
 */
