@@ -18,19 +18,19 @@ public class SortURLs {
 	SortURLs(String [] pathToFiles) {
 
 		map = new TreeMap<>();
-		for(String pathtoFile: pathToFiles)
+		for(String pathtoFile: pathToFiles) {
 			parseFile(pathtoFile);
+		}		
 		printToConsole();
+	
 	}
-
 	/*
 	 * This method parses the contents in file and keeps the content to create
 	 * report in the memory map (a treemap which has keys as day and value as 
 	 * corresponding (urls, counts) in ascending order). 
-	 * Since there are N total lines in  all files
-	 * A treemap takes O(log N) for get and put methods.
-	 * A hashmap takes O(1) for get and put operations.
-	 * time complexity: Big O(N log(N))
+	 * Since the number of days (k), is very less as compared to the unique urls (N),
+	 * there would be minimal effect of sorting the number of days, 
+	 * time complexity: O(N), as k<< N and O(N.log(k)) is nearly equal to O(N)
 	 */
 	void parseFile(String file) {
 
@@ -61,17 +61,12 @@ public class SortURLs {
 
 	/*
 	 * This method prints the report to the console.
-	 * Explanation: If there are 'k' days and a maximum of 'm' urls in 
-	 * one of the day, the complexity would be O(klog(k). mlog(m)). 
-	 * Think of this complexity as formed with 2 terms klog(k) and other mlog(m) (time to
-	 * sort m elements)
-	 * If we maximize, k, i.e. k = n, which signifies, all the lines in the file
-	 * have unique date, and their corr. map would have 1 entry. So 
-	 * complexity will become O(Nlog(N))
-	 * If we maximize m, Nlog(N), all urls in 1 date, time complexity
-	 * becomes O(Nlog(N))
-	 * For the case where, k < N and m < N; klog(k).mlog(m) < N.log(N)
-	 * Thus for this method, complexity is big O(N.log(N))
+	 * If there are 'k' days and a maximum of 'm' distinct hit rates in 
+	 * one of the day, the complexity would be O(klog(k) ( mlog(m) + (n1 + n2+ ..nk)). 
+	 * Given that the number of distinct hit count values (m) are much
+	 * smaller than the number of unique urls m << N, and 
+	 * number of days, k<<N, the time complexity would be almost
+	 * O(N).
 	 */
 	void printToConsole() {
 
@@ -100,10 +95,8 @@ public class SortURLs {
 }
 
 /*
- * The overall Big O time complexity of the program is
- * O(N) for parseFile and O(N.log(N)) for printToConsole.
- * Hence for the entire functionality, we can write it as 
- * Time Complexity: O(N.log(N))
+ * The overall complexity of the program is
+ * Time Complexity: O(N)
  * Space Complexity: O(N) 
  * 
  * Author: Sumedha Khatter
