@@ -1,8 +1,6 @@
-# Nyansa
-Programming Exercise
-You can use any language of choice, e.g. Java, C++, Scala, Python, Ruby, etc. The exercise has no time limit. Please submit the solution and build instruction if applicable to exercise@nyansa.com via Google Drive/Dropbox/Github (preferred) or as attachment.
+# Programming Exercise
 
-
+You can use any language of choice, e.g. Java, C++, Scala, Python, Ruby, etc. 
 Problem:
 
 You’re given an input file. Each line consists of a timestamp (unix epoch in seconds) and a url separated by ‘|’ (pipe operator). The entries are not in any chronological order. Your task is to produce a daily summarized report on url hit count, organized daily (mm/dd/yyyy GMT) with the earliest date appearing first. For each day, you should display the number of times each url is visited in the order of highest hit count to lowest count. Your program should take in one command line argument: input file name. The output should be printed to stdout. You can assume that the cardinality (i.e. number of distinct values) of hit count values and the number of days are much smaller than the number of unique URLs. You may also assume that number of unique URLs can fit in memory, but not necessarily the entire file.
